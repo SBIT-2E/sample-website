@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -54,7 +45,7 @@
 <body>
 
   <div id="calculator">
-    <input type="text" id="display" disabled>
+    <input type="text" id="display" oninput="validateInput()">
     <button onclick="clearDisplay()">C</button>
     <button onclick="appendValue('sqrt(')">√</button>
     <button onclick="appendValue('/')">/</button>
@@ -67,10 +58,10 @@
     <button onclick="appendValue('5')">5</button>
     <button onclick="appendValue('6')">6</button>
     <button onclick="appendValue('+')">+</button>
+    <button onclick="calculate()">=</button>
     <button onclick="appendValue('1')">1</button>
     <button onclick="appendValue('2')">2</button>
     <button onclick="appendValue('3')">3</button>
-    <button onclick="calculate()">=</button>
     <button onclick="appendValue('0')">0</button>
     <button onclick="appendValue('.')">.</button>
   </div>
@@ -95,10 +86,14 @@
         document.getElementById('result').innerHTML = 'Error';
       }
     }
-  </script>
 
-</body>
-</html>
+    function validateInput() {
+      var input = document.getElementById('display').value;
+      // Replace any invalid characters
+      input = input.replace(/[^-()\d/*+.]/g, '');
+      document.getElementById('display').value = input;
+    }
+  </script>
 
 </body>
 </html>
